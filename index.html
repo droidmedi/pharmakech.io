@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="theme-color" content="#2196F3">
+    <meta name="description" content="Pharmacies de garde à Marrakech - Jour et Nuit - PharmaKech">
+    <meta name="keywords" content="pharmacie, garde, Marrakech, urgence, santé">
+    <title>PharmaKech | Pharmacies de garde à Marrakech</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 12px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .logo span {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .header p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Boutons Jour/Nuit */
+        .type-buttons {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .btn-type {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #ecf0f1;
+            color: #7f8c8d;
+        }
+
+        .btn-type.active {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-type.jour.active {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+        }
+
+        .btn-type.nuit.active {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+        }
+
+        .btn-type:active {
+            transform: scale(0.97);
+        }
+
+        /* Date info */
+        .date-banner {
+            background: #2c3e50;
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        /* Contenu principal */
+        .content {
+            padding: 20px;
+        }
+
+        /* Quartiers */
+        .quartiers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .quartier-card {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 16px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .quartier-card:active {
+            transform: scale(0.96);
+        }
+
+        .quartier-card:hover {
+            background: #e3f2fd;
+            border-color: #2196F3;
+        }
+
+        .quartier-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .quartier-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .quartier-count {
+            font-size: 0.75rem;
+            color: #7f8c8d;
+            margin-top: 4px;
+        }
+
+        /* Pharmacies */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: #2196F3;
+            margin-bottom: 20px;
+            cursor: pointer;
+            padding: 8px 0;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-left: 4px solid #2196F3;
+            padding-left: 12px;
+        }
+
+        .pharmacies-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .pharmacie-card {
+            background: white;
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eef2f7;
+            transition: all 0.2s ease;
+        }
+
+        .pharmacie-card:active {
+            transform: scale(0.99);
+        }
+
+        .pharmacie-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2196F3;
+            margin-bottom: 12px;
+        }
+
+        .pharmacie-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: #5a6c7e;
+            line-height: 1.4;
+        }
+
+        .pharmacie-detail .icon {
+            font-size: 1.2rem;
+            min-width: 24px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .btn-call, .btn-nav {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            border: none;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-call {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .btn-call:active {
+            background: #27ae60;
+            transform: scale(0.97);
+        }
+
+        .btn-nav {
+            background: #2196F3;
+            color: white;
+        }
+
+        .btn-nav:active {
+            background: #1976D2;
+            transform: scale(0.97);
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: #bdc3c7;
+            padding: 24px 20px;
+            text-align: center;
+            border-top: 1px solid #34495e;
+        }
+
+        .footer h4 {
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .contact-info {
+            margin: 16px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .contact-item a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 12px 0;
+            transition: all 0.2s ease;
+        }
+
+        .btn-whatsapp:active {
+            transform: scale(0.96);
+        }
+
+        .info-text {
+            background: #f0f0f0;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-top: 16px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            max-width: 90%;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+            }
+
+            .quartiers-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 10px;
+            }
+
+            .pharmacie-name {
+                font-size: 1rem;
+            }
+
+            .btn-call, .btn-nav {
+                padding: 10px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🏥 PharmaKech<span>.com</span></div>
+            <p>Pharmacies de garde à Marrakech - 24h/24</p>
+        </div>
+
+        <div class="type-buttons">
+            <button class="btn-type jour active" id="btnJour">☀️ Garde de Jour</button>
+            <button class="btn-type nuit" id="btnNuit">🌙 Garde de Nuit</button>
+        </div>
+
+        <div id="dateBanner" class="date-banner">📅 Chargement des informations...</div>
+
+        <div class="content" id="mainContent">
+            <!-- Vue Quartiers -->
+            <div id="quartiersView">
+                <h2 class="section-title">📍 Quartiers / Secteurs</h2>
+                <div id="quartiersList" class="quartiers-grid"></div>
+            </div>
+
+            <!-- Vue Pharmacies (cachée initialement) -->
+            <div id="pharmaciesView" style="display: none;">
+                <button id="backButton" class="back-button">← Retour aux quartiers</button>
+                <h2 id="quartierTitle" class="section-title"></h2>
+                <div id="pharmaciesList" class="pharmacies-grid"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h4>📞 Contact</h4>
+            <div class="contact-info">
+                <div class="contact-item">📧 <a href="mailto:medidroid555@gmail.com">medidroid555@gmail.com</a></div>
+                <a href="https://wa.me/212706765056?text=Bonjour%2C%20je%20souhaite%20modifier%20les%20informations%20d%27une%20pharmacie" 
+                   class="btn-whatsapp" target="_blank">
+                    💬 Nous contacter sur WhatsApp
+                </a>
+            </div>
+            <div class="info-text">
+                📢 Vous êtes propriétaire d'une pharmacie ?<br>
+                Contactez-nous pour modifier vos informations (adresse, téléphone, horaires) ou ajouter votre officine.
+            </div>
+            <p style="margin-top: 16px; font-size: 0.75rem;">© 2026 PharmaKech - Tous droits réservés</p>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVd_NRM-GN6hWfxCIZu43MXUhQLZZ5PR8",
+            authDomain: "ramadan-8cbca.firebaseapp.com",
+            databaseURL: "https://ramadan-8cbca.firebaseio.com",
+            projectId: "ramadan-8cbca",
+            storageBucket: "ramadan-8cbca.firebasestorage.app",
+            messagingSenderId: "1055552012194",
+            appId: "1:1055552012194:web:db7d2864e6f9ae014a7cfb",
+            measurementId: "G-EXMWTQ53VK"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        let currentType = "jour";
+        let allQuartiers = [];
+        let allPharmacies = {};
+        let currentQuartier = null;
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.background = isError ? 'rgba(231, 76, 60, 0.95)' : 'rgba(0, 0, 0, 0.9)';
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Charger les infos de date
+        async function loadDateInfo() {
+            try {
+                const dbRef = ref(database);
+                const snapshot = await get(child(dbRef, 'date'));
+                if (snapshot.exists()) {
+                    const dateInfo = snapshot.val();
+                    const dateText = dateInfo.date || '';
+                    const heurJour = dateInfo['heur jour'] || '';
+                    const heurNuit = dateInfo['heur Nuit'] || '';
+                    
+                    const banner = document.getElementById('dateBanner');
+                    if (currentType === 'jour') {
+                        banner.innerHTML = `📅 ${dateText} | ☀️ Garde de Jour : ${heurJour}`;
+                    } else {
+                        banner.innerHTML = `📅 ${dateText} | 🌙 Garde de Nuit : ${heurNuit}`;
+                    }
+                }
+            } catch (error) {
+                console.error('Erreur date:', error);
+            }
+        }
+
+        // Charger toutes les pharmacies depuis Firebase
+        async function loadAllData() {
+            try {
+                const dbRef = ref(database);
+                const snapshot = await get(child(dbRef, 'pharmacies'));
+                if (snapshot.exists()) {
+                    allPharmacies = snapshot.val();
+                    allQuartiers = Object.keys(allPharmacies).sort();
+                    return true;
+                }
+                return false;
+            } catch (error) {
+                console.error('Erreur chargement:', error);
+                showToast('Erreur de connexion', true);
+                return false;
+            }
+        }
+
+        // Récupérer les quartiers avec gardes pour le type sélectionné
+        async function getQuartiersWithGardes() {
+            const dbRef = ref(database);
+            const snapshot = await get(child(dbRef, `gardes/${currentType}`));
+            
+            const quartiersWithGardes = new Set();
+            
+            if (snapshot.exists()) {
+                const gardes = snapshot.val();
+                for (const [quartier, pharmacies] of Object.entries(gardes)) {
+                    if (pharmacies && Object.keys(pharmacies).length > 0) {
+                        quartiersWithGardes.add(quartier);
+                    }
+                }
+            }
+            
+            // Filtrer les quartiers qui ont des pharmacies de garde
+            return allQuartiers.filter(q => quartiersWithGardes.has(q));
+        }
+
+        // Récupérer les pharmacies de garde pour un quartier
+        async function getPharmaciesByQuartier(quartier) {
+            const dbRef = ref(database);
+            const snapshot = await get(child(dbRef, `gardes/${currentType}/${quartier}`));
+            const pharmacieNoms = new Set();
+            
+            if (snapshot.exists()) {
+                const data = snapshot.val();
+                if (Array.isArray(data)) {
+                    data.forEach(nom => pharmacieNoms.add(nom));
+                } else if (typeof data === 'object') {
+                    Object.values(data).forEach(nom => pharmacieNoms.add(nom));
+                }
+            }
+            
+            // Récupérer les détails des pharmacies
+            const pharmacies = [];
+            for (const nom of pharmacieNoms) {
+                if (allPharmacies[quartier] && allPharmacies[quartier][nom]) {
+                    pharmacies.push({
+                        ...allPharmacies[quartier][nom],
+                        key: nom
+                    });
+                }
+            }
+            
+            return pharmacies;
+        }
+
+        // Afficher les quartiers
+        async function displayQuartiers() {
+            const container = document.getElementById('quartiersList');
+            container.innerHTML = '<div class="loading">⏳ Chargement des quartiers...</div>';
+            
+            const quartiers = await getQuartiersWithGardes();
+            
+            if (quartiers.length === 0) {
+                container.innerHTML = '<p style="text-align:center; padding:40px;">Aucune pharmacie de garde disponible</p>';
+                return;
+            }
+            
+            container.innerHTML = quartiers.map(quartier => {
+                const count = allPharmacies[quartier] ? Object.keys(allPharmacies[quartier]).length : 0;
+                return `
+                    <div class="quartier-card" data-quartier="${quartier}">
+                        <div class="quartier-icon">🏘️</div>
+                        <div class="quartier-name">${quartier}</div>
+                        <div class="quartier-count">${count} pharmacies</div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Ajouter les événements
+            document.querySelectorAll('.quartier-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const quartier = card.dataset.quartier;
+                    selectQuartier(quartier);
+                });
+            });
+        }
+
+        // Afficher les pharmacies d'un quartier
+        async function displayPharmacies(quartier) {
+            const container = document.getElementById('pharmaciesList');
+            container.innerHTML = '<div class="loading">⏳ Chargement des pharmacies...</div>';
+            
+            const pharmacies = await getPharmaciesByQuartier(quartier);
+            
+            if (pharmacies.length === 0) {
+                container.innerHTML = '<p style="text-align:center; padding:40px;">Aucune pharmacie de garde dans ce quartier</p>';
+                return;
+            }
+            
+            container.innerHTML = pharmacies.map(pharmacy => `
+                <div class="pharmacie-card">
+                    <div class="pharmacie-name">💊 ${pharmacy.nom || pharmacy.key}</div>
+                    <div class="pharmacie-detail">
+                        <span class="icon">📍</span>
+                        <span>${pharmacy.adresse || 'Adresse non disponible'}</span>
+                    </div>
+                    <div class="pharmacie-detail">
+                        <span class="icon">📞</span>
+                        <span>${pharmacy.phone || 'Téléphone non disponible'}</span>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn-call" data-phone="${pharmacy.phone}">
+                            📞 Appeler
+                        </button>
+                        <button class="btn-nav" data-url="${pharmacy.url || ''}" data-nom="${pharmacy.nom || pharmacy.key}" data-adresse="${pharmacy.adresse || ''}">
+                            🗺️ Naviguer
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Ajouter les événements
+            document.querySelectorAll('.btn-call').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const phone = btn.dataset.phone;
+                    if (phone && phone !== 'N' && phone.trim() !== '') {
+                        window.location.href = `tel:${phone.replace(/\s/g, '')}`;
+                    } else {
+                        showToast('📞 Numéro de téléphone non disponible', true);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.btn-nav').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const url = btn.dataset.url;
+                    const nom = btn.dataset.nom;
+                    const adresse = btn.dataset.adresse;
+                    
+                    if (url && url !== 'N' && url.trim() !== '' && url !== '#') {
+                        window.open(url, '_blank');
+                    } else {
+                        // Recherche Google Maps
+                        const query = encodeURIComponent(`${nom} ${adresse} Marrakech`);
+                        window.open(`https://maps.google.com/?q=${query}`, '_blank');
+                        showToast('🗺️ Ouverture de Google Maps', false);
+                    }
+                });
+            });
+        }
+
+        // Sélectionner un quartier
+        async function selectQuartier(quartier) {
+            currentQuartier = quartier;
+            document.getElementById('quartierTitle').innerHTML = `🏪 ${quartier} - ${currentType === 'jour' ? 'Garde de Jour' : 'Garde de Nuit'}`;
+            
+            await displayPharmacies(quartier);
+            
+            document.getElementById('quartiersView').style.display = 'none';
+            document.getElementById('pharmaciesView').style.display = 'block';
+            
+            // Scroller en haut
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Retour aux quartiers
+        function backToQuartiers() {
+            document.getElementById('pharmaciesView').style.display = 'none';
+            document.getElementById('quartiersView').style.display = 'block';
+            currentQuartier = null;
+            
+            // Recharger les quartiers (car le type peut avoir changé)
+            displayQuartiers();
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Changer le type (jour/nuit)
+        async function setType(type) {
+            currentType = type;
+            
+            // Mettre à jour les boutons
+            const btnJour = document.getElementById('btnJour');
+            const btnNuit = document.getElementById('btnNuit');
+            
+            if (type === 'jour') {
+                btnJour.classList.add('active');
+                btnNuit.classList.remove('active');
+            } else {
+                btnNuit.classList.add('active');
+                btnJour.classList.remove('active');
+            }
+            
+            // Mettre à jour la bannière de date
+            await loadDateInfo();
+            
+            // Revenir à la vue des quartiers
+            if (document.getElementById('pharmaciesView').style.display === 'block') {
+                backToQuartiers();
+            } else {
+                await displayQuartiers();
+            }
+        }
+
+        // Initialisation
+        async function init() {
+            const success = await loadAllData();
+            if (success) {
+                await loadDateInfo();
+                await displayQuartiers();
+            } else {
+                document.getElementById('quartiersList').innerHTML = '<p style="text-align:center; padding:40px;">❌ Erreur de chargement des données</p>';
+            }
+        }
+
+        // Événements
+        document.getElementById('btnJour').addEventListener('click', () => setType('jour'));
+        document.getElementById('btnNuit').addEventListener('click', () => setType('nuit'));
+        document.getElementById('backButton').addEventListener('click', backToQuartiers);
+        
+        // Démarrer
+        init();
+    </script>
+</body>
+
+</html>
