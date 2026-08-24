@@ -3,12 +3,33 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <meta name="theme-color" content="#2196F3">
-    <meta name="description" content="Pharmacies de garde à Marrakech - Jour et Nuit - PharmaKech">
-    <meta name="keywords" content="pharmacie, garde, Marrakech, urgence, santé">
-    <title>PharmaKech | Pharmacies de garde à Marrakech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1a237e">
+    <meta name="description" content="Pharmacies de garde à Marrakech - Jour et Nuit - Marrapharmacie">
+    <meta name="keywords" content="pharmacie, garde, Marrakech, urgence, santé, pharmacie de garde">
+    <title>Marrapharmacie | Pharmacies de garde à Marrakech</title>
+    <link rel="icon" href="https://ik.imagekit.io/fwmsbpxje/marrapharmacie/icon%20site%20pharma.jpg" type="image/jpeg">
+    <link rel="shortcut icon" href="https://ik.imagekit.io/fwmsbpxje/marrapharmacie/icon%20site%20pharma.jpg" type="image/jpeg">
+    <link rel="preconnect" href="https://www.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <style>
+        :root {
+            --color-primary: #1a237e;
+            --color-primary-dark: #0d1460;
+            --color-accent: #2e7d32;
+            --color-accent-dark: #1b5e20;
+            --color-warning: #ef6c00;
+            --color-warning-dark: #e65100;
+            --color-bg: #f5f7fa;
+            --color-card: #ffffff;
+            --color-text: #2c3e50;
+            --color-text-light: #6c7a89;
+            --color-border: #e1e8ed;
+            --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+            --shadow-card-hover: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --shadow-app: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -18,51 +39,64 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 12px;
+            background: var(--color-bg);
+            padding: 16px;
             min-height: 100vh;
+            color: var(--color-text);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 28px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            background: var(--color-card);
+            border-radius: 24px;
+            box-shadow: var(--shadow-app);
             overflow: hidden;
         }
 
-        /* Header */
         .header {
-            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
             color: white;
-            padding: 24px 20px;
+            padding: 28px 24px;
             text-align: center;
         }
 
         .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 8px;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
+
+            .logo img.logo-icon {
+                width: 56px;
+                height: 56px;
+                object-fit: contain;
+                filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+            }
 
         .logo span {
             font-size: 1rem;
-            opacity: 0.9;
+            opacity: 0.85;
+            font-weight: 400;
         }
 
         .header p {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             opacity: 0.9;
+            font-weight: 400;
         }
 
-        /* Boutons Jour/Nuit */
         .type-buttons {
             display: flex;
             gap: 16px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #e0e0e0;
+            padding: 24px;
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
         }
 
         .btn-type {
@@ -70,25 +104,26 @@
             padding: 16px;
             border: none;
             border-radius: 60px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            background: #ecf0f1;
-            color: #7f8c8d;
+            background: #f0f2f5;
+            color: var(--color-text-light);
         }
 
         .btn-type.active {
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow-card-hover);
+            transform: translateY(-1px);
         }
 
         .btn-type.jour.active {
-            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
             color: white;
         }
 
         .btn-type.nuit.active {
-            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            background: linear-gradient(135deg, var(--color-warning) 0%, var(--color-warning-dark) 100%);
             color: white;
         }
 
@@ -96,36 +131,34 @@
             transform: scale(0.97);
         }
 
-        /* Date info */
         .date-banner {
-            background: #2c3e50;
+            background: var(--color-primary-dark);
             color: white;
-            padding: 12px 20px;
+            padding: 14px 24px;
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.88rem;
+            font-weight: 500;
         }
 
-        /* Contenu principal */
         .content {
-            padding: 20px;
+            padding: 24px;
         }
 
-        /* Quartiers */
         .quartiers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 14px;
             margin-bottom: 24px;
         }
 
         .quartier-card {
-            background: #f8f9fa;
+            background: var(--color-bg);
             border-radius: 16px;
-            padding: 16px 12px;
+            padding: 20px 14px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s ease;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--color-border);
         }
 
         .quartier-card:active {
@@ -133,8 +166,9 @@
         }
 
         .quartier-card:hover {
-            background: #e3f2fd;
-            border-color: #2196F3;
+            background: var(--color-card);
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-card-hover);
         }
 
         .quartier-icon {
@@ -144,16 +178,16 @@
 
         .quartier-name {
             font-weight: 600;
-            color: #2c3e50;
+            color: var(--color-text);
+            font-size: 0.95rem;
+            margin-bottom: 4px;
         }
 
         .quartier-count {
-            font-size: 0.75rem;
-            color: #7f8c8d;
-            margin-top: 4px;
+            font-size: 0.78rem;
+            color: var(--color-text-light);
         }
 
-        /* Pharmacies */
         .back-button {
             display: inline-flex;
             align-items: center;
@@ -161,18 +195,20 @@
             background: none;
             border: none;
             font-size: 1rem;
-            color: #2196F3;
-            margin-bottom: 20px;
+            color: var(--color-primary);
+            margin-bottom: 24px;
             cursor: pointer;
             padding: 8px 0;
+            font-weight: 500;
         }
 
         .section-title {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: #2c3e50;
-            border-left: 4px solid #2196F3;
-            padding-left: 12px;
+            font-size: 1.35rem;
+            margin-bottom: 24px;
+            color: var(--color-primary-dark);
+            border-left: 4px solid var(--color-primary);
+            padding-left: 14px;
+            font-weight: 700;
         }
 
         .pharmacies-grid {
@@ -182,44 +218,51 @@
         }
 
         .pharmacie-card {
-            background: white;
+            background: var(--color-card);
             border-radius: 20px;
-            padding: 18px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-            border: 1px solid #eef2f7;
+            padding: 22px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--color-border);
             transition: all 0.2s ease;
         }
 
-        .pharmacie-card:active {
-            transform: scale(0.99);
+        .pharmacie-card:hover {
+            box-shadow: var(--shadow-card-hover);
+            border-color: var(--color-primary);
         }
 
         .pharmacie-name {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #2196F3;
-            margin-bottom: 12px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 14px;
         }
 
         .pharmacie-detail {
             display: flex;
             align-items: flex-start;
             gap: 12px;
-            margin-bottom: 12px;
-            font-size: 0.9rem;
-            color: #5a6c7e;
-            line-height: 1.4;
+            margin-bottom: 10px;
+            font-size: 0.92rem;
+            color: var(--color-text);
+            line-height: 1.5;
         }
 
         .pharmacie-detail .icon {
-            font-size: 1.2rem;
+            font-size: 1.05rem;
             min-width: 24px;
+            color: var(--color-primary);
+        }
+
+        .pharmacie-detail .detail-text {
+            color: var(--color-text-light);
+            flex: 1;
         }
 
         .action-buttons {
             display: flex;
             gap: 12px;
-            margin-top: 16px;
+            margin-top: 18px;
         }
 
         .btn-call, .btn-nav {
@@ -238,51 +281,48 @@
         }
 
         .btn-call {
-            background: #2ecc71;
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
             color: white;
         }
 
         .btn-call:active {
-            background: #27ae60;
             transform: scale(0.97);
         }
 
         .btn-nav {
-            background: #2196F3;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
             color: white;
         }
 
         .btn-nav:active {
-            background: #1976D2;
             transform: scale(0.97);
         }
 
-        /* Loading */
         .loading {
             text-align: center;
-            padding: 40px;
-            color: #7f8c8d;
+            padding: 48px 20px;
+            color: var(--color-text-light);
+            font-size: 1rem;
         }
 
-        /* Footer */
         .footer {
-            background: #2c3e50;
+            background: var(--color-primary-dark);
             color: #bdc3c7;
-            padding: 24px 20px;
+            padding: 28px 20px;
             text-align: center;
-            border-top: 1px solid #34495e;
         }
 
         .footer h4 {
             color: white;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            font-weight: 600;
         }
 
         .contact-info {
-            margin: 16px 0;
+            margin: 18px 0;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
 
         .contact-item {
@@ -290,11 +330,16 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            font-size: 0.9rem;
         }
 
         .contact-item a {
-            color: #3498db;
+            color: #90caf9;
             text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
         }
 
         .btn-whatsapp {
@@ -303,12 +348,17 @@
             gap: 10px;
             background: #25D366;
             color: white;
-            padding: 12px 24px;
+            padding: 14px 28px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             margin: 12px 0;
             transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
         }
 
         .btn-whatsapp:active {
@@ -316,22 +366,22 @@
         }
 
         .info-text {
-            background: #f0f0f0;
-            padding: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 14px;
             border-radius: 12px;
             font-size: 0.85rem;
-            margin-top: 16px;
+            margin-top: 18px;
+            line-height: 1.5;
         }
 
-        /* Toast */
         .toast {
             position: fixed;
-            bottom: 20px;
+            bottom: 24px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
             background: rgba(0, 0, 0, 0.9);
             color: white;
-            padding: 12px 20px;
+            padding: 12px 24px;
             border-radius: 50px;
             font-size: 14px;
             z-index: 1000;
@@ -345,28 +395,95 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        /* Mobile */
+        .btn-app-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #1a237e 0%, #0d1460 100%);
+            color: white;
+            padding: 14px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(26, 35, 126, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.92rem;
+        }
+
+        .btn-app-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 35, 126, 0.4);
+        }
+
+        .btn-app-download:active {
+            transform: scale(0.97);
+        }
+
+        .btn-app-download .google-play-icon {
+            font-size: 1.6rem;
+        }
+
+        .header-download, .footer-download {
+            text-align: right;
+            margin-top: 14px;
+        }
+
+        .footer-download {
+            margin-top: 16px;
+        }
+
         @media (max-width: 480px) {
             body {
-                padding: 8px;
+                padding: 10px;
+            }
+
+            .btn-type {
+                padding: 14px 12px;
+                font-size: 0.9rem;
             }
 
             .quartiers-grid {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-                gap: 10px;
+                gap: 12px;
+            }
+
+            .quartier-card {
+                padding: 16px 10px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .pharmacie-card {
+                padding: 18px;
             }
 
             .pharmacie-name {
-                font-size: 1rem;
+                font-size: 1.05rem;
             }
 
             .btn-call, .btn-nav {
                 padding: 10px;
-                font-size: 0.8rem;
+                font-size: 0.82rem;
+            }
+
+            .btn-app-download {
+                padding: 12px 20px;
+                font-size: 0.82rem;
+                gap: 10px;
+            }
+
+            .btn-app-download .google-play-icon {
+                font-size: 1.4rem;
+            }
+
+            .header-download, .footer-download {
+                text-align: right;
             }
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 4px;
         }
@@ -384,51 +501,71 @@
 
 <body>
     <div class="container">
-        <div class="header">
-            <div class="logo">🏥 PharmaKech<span>.com</span></div>
-            <p>Pharmacies de garde à Marrakech - 24h/24</p>
-        </div>
-
-        <div class="type-buttons">
-            <button class="btn-type jour active" id="btnJour">☀️ Garde de Jour</button>
-            <button class="btn-type nuit" id="btnNuit">🌙 Garde de Nuit</button>
-        </div>
-
-        <div id="dateBanner" class="date-banner">📅 Chargement des informations...</div>
-
-        <div class="content" id="mainContent">
-            <!-- Vue Quartiers -->
-            <div id="quartiersView">
-                <h2 class="section-title">📍 Quartiers / Secteurs</h2>
-                <div id="quartiersList" class="quartiers-grid"></div>
+        <header class="header" role="banner">
+            <div class="logo" role="heading" aria-label="Marrapharmacie - Logo">
+                <img src="https://ik.imagekit.io/fwmsbpxje/marrapharmacie/icon%20site%20pharma.jpg" alt="Logo Marrapharmacie" class="logo-icon"> Marrapharmacie<span>.com</span>
             </div>
+            <p>Pharmacies de garde à Marrakech - 24h/24 et 7j/7</p>
+            <div class="header-download">
+                <a href="https://play.google.com/store/apps/details?id=com.droidmedi.medidroid.pharmaciemarrakech&pcampaignid=web_share"
+                   class="btn-app-download" target="_blank" rel="noopener noreferrer"
+                   aria-label="Télécharger l'application Marrapharmacie sur le Play Store">
+                    <span class="google-play-icon">📱</span> Télécharger sur Play Store
+                </a>
+            </div>
+        </header>
+
+        <nav class="type-buttons" role="navigation" aria-label="Type de garde">
+            <button class="btn-type jour active" id="btnJour" aria-pressed="true">☀️ Garde de Jour</button>
+            <button class="btn-type nuit" id="btnNuit" aria-pressed="false">🌙 Garde de Nuit</button>
+        </nav>
+
+        <div id="dateBanner" class="date-banner" role="status" aria-live="polite">📅 Chargement des informations...</div>
+
+        <main class="content" id="mainContent" role="main">
+            <!-- Vue Quartiers -->
+            <section id="quartiersView">
+                <h2 class="section-title">📍 Quartiers / Secteurs</h2>
+                <div id="quartiersList" class="quartiers-grid" aria-label="Liste des quartiers">
+                    <div class="loading" role="status">⏳ Chargement des quartiers...</div>
+                </div>
+            </section>
 
             <!-- Vue Pharmacies (cachée initialement) -->
-            <div id="pharmaciesView" style="display: none;">
-                <button id="backButton" class="back-button">← Retour aux quartiers</button>
-                <h2 id="quartierTitle" class="section-title"></h2>
-                <div id="pharmaciesList" class="pharmacies-grid"></div>
-            </div>
-        </div>
+            <section id="pharmaciesView" style="display: none;" aria-hidden="true">
+                <button id="backButton" class="back-button" aria-label="Retour aux quartiers">← Retour aux quartiers</button>
+                <h2 id="quartierTitle" class="section-title" aria-label="Quartier sélectionné"></h2>
+                <div id="pharmaciesList" class="pharmacies-grid" aria-label="Liste des pharmacies de garde">
+                    <div class="loading">⏳ Chargement des pharmacies...</div>
+                </div>
+            </section>
+        </main>
 
-        <div class="footer">
+        <footer class="footer" role="contentinfo">
             <h4>📞 Contact</h4>
             <div class="contact-info">
                 <div class="contact-item">📧 <a href="mailto:medidroid555@gmail.com">medidroid555@gmail.com</a></div>
-                <a href="https://wa.me/212706765056?text=Bonjour%2C%20je%20souhaite%20modifier%20les%20informations%20d%27une%20pharmacie" 
-                   class="btn-whatsapp" target="_blank">
+                <a href="https://wa.me/212706765056?text=Bonjour%2C%20je%20souhaite%20modifier%20les%20informations%20d%27une%20pharmacie"
+                   class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
                     💬 Nous contacter sur WhatsApp
+                </a>
+            </div>
+            <div class="footer-download">
+                <a href="https://play.google.com/store/apps/details?id=com.droidmedi.medidroid.pharmaciemarrakech&pcampaignid=web_share"
+                   class="btn-app-download" target="_blank" rel="noopener noreferrer"
+                   aria-label="Télécharger l'application Marrapharmacie sur le Play Store">
+                    <span class="google-play-icon">📱</span> Télécharger sur Play Store
                 </a>
             </div>
             <div class="info-text">
                 📢 Vous êtes propriétaire d'une pharmacie ?<br>
                 Contactez-nous pour modifier vos informations (adresse, téléphone, horaires) ou ajouter votre officine.
             </div>
-            <p style="margin-top: 16px; font-size: 0.75rem;">© 2026 PharmaKech - Tous droits réservés</p>
-        </div>
+            <p style="margin-top: 20px; font-size: 0.78rem;">© 2026 Marrapharmacie - Tous droits réservés</p>
+        </footer>
     </div>
 
-    <div id="toast" class="toast"></div>
+    <div id="toast" class="toast" role="alert" aria-live="polite"></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -463,7 +600,6 @@
             }, 3000);
         }
 
-        // Charger les infos de date
         async function loadDateInfo() {
             try {
                 const dbRef = ref(database);
@@ -471,9 +607,9 @@
                 if (snapshot.exists()) {
                     const dateInfo = snapshot.val();
                     const dateText = dateInfo.date || '';
-                    const heurJour = dateInfo['heur jour'] || '';
-                    const heurNuit = dateInfo['heur Nuit'] || '';
-                    
+                    const heurJour = dateInfo['heur jour'] || dateInfo['heur Jour'] || '';
+                    const heurNuit = dateInfo['heur Nuit'] || dateInfo['heur nuit'] || '';
+
                     const banner = document.getElementById('dateBanner');
                     if (currentType === 'jour') {
                         banner.innerHTML = `📅 ${dateText} | ☀️ Garde de Jour : ${heurJour}`;
@@ -486,7 +622,6 @@
             }
         }
 
-        // Charger toutes les pharmacies depuis Firebase
         async function loadAllData() {
             try {
                 const dbRef = ref(database);
@@ -504,13 +639,12 @@
             }
         }
 
-        // Récupérer les quartiers avec gardes pour le type sélectionné
         async function getQuartiersWithGardes() {
             const dbRef = ref(database);
             const snapshot = await get(child(dbRef, `gardes/${currentType}`));
-            
+
             const quartiersWithGardes = new Set();
-            
+
             if (snapshot.exists()) {
                 const gardes = snapshot.val();
                 for (const [quartier, pharmacies] of Object.entries(gardes)) {
@@ -519,17 +653,15 @@
                     }
                 }
             }
-            
-            // Filtrer les quartiers qui ont des pharmacies de garde
+
             return allQuartiers.filter(q => quartiersWithGardes.has(q));
         }
 
-        // Récupérer les pharmacies de garde pour un quartier
         async function getPharmaciesByQuartier(quartier) {
             const dbRef = ref(database);
             const snapshot = await get(child(dbRef, `gardes/${currentType}/${quartier}`));
             const pharmacieNoms = new Set();
-            
+
             if (snapshot.exists()) {
                 const data = snapshot.val();
                 if (Array.isArray(data)) {
@@ -538,8 +670,7 @@
                     Object.values(data).forEach(nom => pharmacieNoms.add(nom));
                 }
             }
-            
-            // Récupérer les détails des pharmacies
+
             const pharmacies = [];
             for (const nom of pharmacieNoms) {
                 if (allPharmacies[quartier] && allPharmacies[quartier][nom]) {
@@ -549,77 +680,94 @@
                     });
                 }
             }
-            
+
             return pharmacies;
         }
 
-        // Afficher les quartiers
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
         async function displayQuartiers() {
             const container = document.getElementById('quartiersList');
-            container.innerHTML = '<div class="loading">⏳ Chargement des quartiers...</div>';
-            
+            container.innerHTML = '<div class="loading" role="status">⏳ Chargement des quartiers...</div>';
+
             const quartiers = await getQuartiersWithGardes();
-            
+
             if (quartiers.length === 0) {
-                container.innerHTML = '<p style="text-align:center; padding:40px;">Aucune pharmacie de garde disponible</p>';
+                container.innerHTML = '<p style="text-align:center; padding:40px; color: var(--color-text-light);">Aucune pharmacie de garde disponible</p>';
                 return;
             }
-            
+
             container.innerHTML = quartiers.map(quartier => {
                 const count = allPharmacies[quartier] ? Object.keys(allPharmacies[quartier]).length : 0;
                 return `
-                    <div class="quartier-card" data-quartier="${quartier}">
-                        <div class="quartier-icon">🏘️</div>
-                        <div class="quartier-name">${quartier}</div>
+                    <div class="quartier-card" data-quartier="${escapeHtml(quartier)}" role="button" tabindex="0" aria-label="${escapeHtml(quartier)} - ${count} pharmacies">
+                        <div class="quartier-icon" aria-hidden="true">🏘️</div>
+                        <div class="quartier-name">${escapeHtml(quartier)}</div>
                         <div class="quartier-count">${count} pharmacies</div>
                     </div>
                 `;
             }).join('');
-            
-            // Ajouter les événements
+
             document.querySelectorAll('.quartier-card').forEach(card => {
                 card.addEventListener('click', () => {
                     const quartier = card.dataset.quartier;
                     selectQuartier(quartier);
                 });
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const quartier = card.dataset.quartier;
+                        selectQuartier(quartier);
+                    }
+                });
             });
         }
 
-        // Afficher les pharmacies d'un quartier
         async function displayPharmacies(quartier) {
             const container = document.getElementById('pharmaciesList');
-            container.innerHTML = '<div class="loading">⏳ Chargement des pharmacies...</div>';
-            
+            container.innerHTML = '<div class="loading" role="status">⏳ Chargement des pharmacies...</div>';
+
             const pharmacies = await getPharmaciesByQuartier(quartier);
-            
+
             if (pharmacies.length === 0) {
-                container.innerHTML = '<p style="text-align:center; padding:40px;">Aucune pharmacie de garde dans ce quartier</p>';
+                container.innerHTML = '<p style="text-align:center; padding:40px; color: var(--color-text-light);">Aucune pharmacie de garde dans ce quartier</p>';
                 return;
             }
-            
-            container.innerHTML = pharmacies.map(pharmacy => `
-                <div class="pharmacie-card">
-                    <div class="pharmacie-name">💊 ${pharmacy.nom || pharmacy.key}</div>
-                    <div class="pharmacie-detail">
-                        <span class="icon">📍</span>
-                        <span>${pharmacy.adresse || 'Adresse non disponible'}</span>
-                    </div>
-                    <div class="pharmacie-detail">
-                        <span class="icon">📞</span>
-                        <span>${pharmacy.phone || 'Téléphone non disponible'}</span>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="btn-call" data-phone="${pharmacy.phone}">
-                            📞 Appeler
-                        </button>
-                        <button class="btn-nav" data-url="${pharmacy.url || ''}" data-nom="${pharmacy.nom || pharmacy.key}" data-adresse="${pharmacy.adresse || ''}">
-                            🗺️ Naviguer
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-            
-            // Ajouter les événements
+
+            container.innerHTML = pharmacies.map(pharmacy => {
+                const nom = escapeHtml(pharmacy.nom || pharmacy.key);
+                const adresse = escapeHtml(pharmacy.adresse || 'Adresse non disponible');
+                const phone = escapeHtml(pharmacy.phone || 'Téléphone non disponible');
+                const phoneRaw = pharmacy.phone || '';
+                const url = escapeHtml(pharmacy.url || '');
+
+                return `
+                    <article class="pharmacie-card" aria-labelledby="pharmacy-name-${pharmacy.key}">
+                        <div class="pharmacie-name" id="pharmacy-name-${escapeHtml(pharmacy.key)}">💊 ${nom}</div>
+                        <div class="pharmacie-detail">
+                            <span class="icon" aria-hidden="true">📍</span>
+                            <span class="detail-text">${adresse}</span>
+                        </div>
+                        <div class="pharmacie-detail">
+                            <span class="icon" aria-hidden="true">📞</span>
+                            <span class="detail-text">${phone}</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-call" data-phone="${escapeHtml(phoneRaw)}" aria-label="Appeler ${nom}">
+                                📞 Appeler
+                            </button>
+                            <button class="btn-nav" data-url="${url}" data-nom="${nom}" data-adresse="${adresse}" aria-label="Naviguer vers ${nom}">
+                                🗺️ Naviguer
+                            </button>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
             document.querySelectorAll('.btn-call').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const phone = btn.dataset.phone;
@@ -630,95 +778,92 @@
                     }
                 });
             });
-            
+
             document.querySelectorAll('.btn-nav').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const url = btn.dataset.url;
                     const nom = btn.dataset.nom;
                     const adresse = btn.dataset.adresse;
-                    
+
                     if (url && url !== 'N' && url.trim() !== '' && url !== '#') {
-                        window.open(url, '_blank');
+                        window.open(url, '_blank', 'noopener,noreferrer');
                     } else {
-                        // Recherche Google Maps
                         const query = encodeURIComponent(`${nom} ${adresse} Marrakech`);
-                        window.open(`https://maps.google.com/?q=${query}`, '_blank');
+                        window.open(`https://maps.google.com/?q=${query}`, '_blank', 'noopener,noreferrer');
                         showToast('🗺️ Ouverture de Google Maps', false);
                     }
                 });
             });
         }
 
-        // Sélectionner un quartier
         async function selectQuartier(quartier) {
             currentQuartier = quartier;
-            document.getElementById('quartierTitle').innerHTML = `🏪 ${quartier} - ${currentType === 'jour' ? 'Garde de Jour' : 'Garde de Nuit'}`;
-            
+            const title = document.getElementById('quartierTitle');
+            title.innerHTML = `🏪 ${escapeHtml(quartier)} - ${currentType === 'jour' ? 'Garde de Jour' : 'Garde de Nuit'}`;
+            title.setAttribute('aria-label', `${quartier} - ${currentType === 'jour' ? 'Garde de Jour' : 'Garde de Nuit'}`);
+
             await displayPharmacies(quartier);
-            
+
             document.getElementById('quartiersView').style.display = 'none';
-            document.getElementById('pharmaciesView').style.display = 'block';
-            
-            // Scroller en haut
+            const pharmaciesView = document.getElementById('pharmaciesView');
+            pharmaciesView.style.display = 'block';
+            pharmaciesView.setAttribute('aria-hidden', 'false');
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Retour aux quartiers
-        function backToQuartiers() {
+        async function backToQuartiers() {
             document.getElementById('pharmaciesView').style.display = 'none';
+            document.getElementById('pharmaciesView').setAttribute('aria-hidden', 'true');
             document.getElementById('quartiersView').style.display = 'block';
             currentQuartier = null;
-            
-            // Recharger les quartiers (car le type peut avoir changé)
-            displayQuartiers();
-            
+
+            await displayQuartiers();
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Changer le type (jour/nuit)
         async function setType(type) {
             currentType = type;
-            
-            // Mettre à jour les boutons
+
             const btnJour = document.getElementById('btnJour');
             const btnNuit = document.getElementById('btnNuit');
-            
+
             if (type === 'jour') {
                 btnJour.classList.add('active');
                 btnNuit.classList.remove('active');
+                btnJour.setAttribute('aria-pressed', 'true');
+                btnNuit.setAttribute('aria-pressed', 'false');
             } else {
                 btnNuit.classList.add('active');
                 btnJour.classList.remove('active');
+                btnNuit.setAttribute('aria-pressed', 'true');
+                btnJour.setAttribute('aria-pressed', 'false');
             }
-            
-            // Mettre à jour la bannière de date
+
             await loadDateInfo();
-            
-            // Revenir à la vue des quartiers
+
             if (document.getElementById('pharmaciesView').style.display === 'block') {
-                backToQuartiers();
+                await backToQuartiers();
             } else {
                 await displayQuartiers();
             }
         }
 
-        // Initialisation
         async function init() {
             const success = await loadAllData();
             if (success) {
                 await loadDateInfo();
                 await displayQuartiers();
             } else {
-                document.getElementById('quartiersList').innerHTML = '<p style="text-align:center; padding:40px;">❌ Erreur de chargement des données</p>';
+                document.getElementById('quartiersList').innerHTML = '<p style="text-align:center; padding:40px; color: var(--color-text-light);">❌ Erreur de chargement des données. Veuillez réessayer.</p>';
             }
         }
 
-        // Événements
         document.getElementById('btnJour').addEventListener('click', () => setType('jour'));
         document.getElementById('btnNuit').addEventListener('click', () => setType('nuit'));
         document.getElementById('backButton').addEventListener('click', backToQuartiers);
-        
-        // Démarrer
+
         init();
     </script>
 </body>
