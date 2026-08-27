@@ -326,6 +326,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            align-items: center;
         }
 
         .contact-item {
@@ -402,21 +403,21 @@
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background: linear-gradient(135deg, #1a237e 0%, #0d1460 100%);
+            background: linear-gradient(135deg, #01875f 0%, #014c3a 100%);
             color: white;
             padding: 14px 24px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(26, 35, 126, 0.3);
+            box-shadow: 0 4px 16px rgba(1, 135, 95, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.2);
             font-size: 0.92rem;
         }
 
         .btn-app-download:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(26, 35, 126, 0.4);
+            box-shadow: 0 6px 20px rgba(1, 135, 95, 0.4);
         }
 
         .btn-app-download:active {
@@ -424,7 +425,9 @@
         }
 
         .btn-app-download .google-play-icon {
-            font-size: 1.6rem;
+            width: 1.6rem;
+            height: 1.6rem;
+            flex-shrink: 0;
         }
 
         .header-download, .footer-download {
@@ -479,7 +482,8 @@
             }
 
             .btn-app-download .google-play-icon {
-                font-size: 1.4rem;
+                width: 1.4rem;
+                height: 1.4rem;
             }
 
             .header-download, .footer-download {
@@ -509,13 +513,17 @@
                 <img src="https://ik.imagekit.io/fwmsbpxje/marrapharmacie/icon%20site%20pharma.jpg" alt="Logo Marrapharmacie" class="logo-icon"> Marrapharmacie<span>.com</span>
             </div>
             <p>Pharmacies de garde à Marrakech - 24h/24 et 7j/7</p>
-            <div class="header-download">
-                <a href="https://play.google.com/store/apps/details?id=com.droidmedi.medidroid.pharmaciemarrakech&pcampaignid=web_share"
-                   class="btn-app-download" target="_blank" rel="noopener noreferrer"
-                   aria-label="Télécharger l'application Marrapharmacie sur le Play Store">
-                    <span class="google-play-icon">📱</span> Télécharger sur Play Store
-                </a>
-            </div>
+    <div class="header-download">
+        <a href="https://play.google.com/store/apps/details?id=com.droidmedi.medidroid.pharmaciemarrakech&pcampaignid=web_share"
+           class="btn-app-download" target="_blank" rel="noopener noreferrer"
+           aria-label="Télécharger l'application Marrapharmacie sur le Play Store">
+            <svg class="google-play-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.61 1.814L13.793 12 3.61 22.186V1.814Z" fill="white"/>
+              <path d="M17.5 12L13.793 12 3.61 1.814V22.186L13.793 12 17.5 12Z" fill="white" fill-opacity="0.6"/>
+            </svg>
+            Télécharger sur Play Store
+        </a>
+    </div>
         </header>
 
         <nav class="type-buttons" role="navigation" aria-label="Type de garde">
@@ -557,7 +565,11 @@
                 <a href="https://play.google.com/store/apps/details?id=com.droidmedi.medidroid.pharmaciemarrakech&pcampaignid=web_share"
                    class="btn-app-download" target="_blank" rel="noopener noreferrer"
                    aria-label="Télécharger l'application Marrapharmacie sur le Play Store">
-                    <span class="google-play-icon">📱</span> Télécharger sur Play Store
+                    <svg class="google-play-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.61 1.814L13.793 12 3.61 22.186V1.814Z" fill="white"/>
+                      <path d="M17.5 12L13.793 12 3.61 1.814V22.186L13.793 12 17.5 12Z" fill="white" fill-opacity="0.6"/>
+                    </svg>
+                    Télécharger sur Play Store
                 </a>
             </div>
             <div class="info-text">
