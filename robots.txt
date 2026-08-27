@@ -1,0 +1,7 @@
+# robots.txt for https://marrapharmacie.com
+
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://marrapharmacie.com/sitemap.xml
