@@ -820,7 +820,7 @@
                 </div>
                 <div class="modal-produit-desc-label"> الوصف</div>
                 <div class="modal-produit-desc">
-                    ماء ورد طبيعي ونقي من منطقة الرشيدية 🌹<br>
+                    ماء ورد طبيعي ونقي من منطقة الراشدية 🌹<br>
                     مقطر بطريقة تقليدية من الورد الطازج، يتميز برائحة عطرة وأصيلة. مناسب للطبخ والعناية بالبشرة وللاستعمال اليومي.
                 </div>
                 
@@ -852,6 +852,35 @@
         let allQuartiers = [];
         let allPharmacies = {};
         let currentQuartier = null;
+        let gardePharmacies = { jour: {}, nuit: {} };
+
+        async function loadGardeCounts() {
+            try {
+                const dbRef = ref(database);
+                const [jourSnap, nuitSnap] = await Promise.all([
+                    get(child(dbRef, 'gardes/jour')),
+                    get(child(dbRef, 'gardes/nuit'))
+                ]);
+                if (jourSnap.exists()) {
+                    const jourData = jourSnap.val();
+                    for (const [quartier, pharmacies] of Object.entries(jourData)) {
+                        if (pharmacies) {
+                            gardePharmacies.jour[quartier] = Array.isArray(pharmacies) ? pharmacies.length : Object.keys(pharmacies).length;
+                        }
+                    }
+                }
+                if (nuitSnap.exists()) {
+                    const nuitData = nuitSnap.val();
+                    for (const [quartier, pharmacies] of Object.entries(nuitData)) {
+                        if (pharmacies) {
+                            gardePharmacies.nuit[quartier] = Array.isArray(pharmacies) ? pharmacies.length : Object.keys(pharmacies).length;
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Erreur chargement gardes:', error);
+            }
+        }
 
         function showToast(message, isError = false) {
             const toast = document.getElementById('toast');
@@ -965,12 +994,12 @@
             }
 
             container.innerHTML = quartiers.map(quartier => {
-                const count = allPharmacies[quartier] ? Object.keys(allPharmacies[quartier]).length : 0;
+                const count = gardePharmacies[currentType][quartier] || 0;
                 return `
                     <div class="quartier-card" data-quartier="${escapeHtml(quartier)}" role="button" tabindex="0" aria-label="${escapeHtml(quartier)} - ${count} pharmacies">
                         <div class="quartier-icon" aria-hidden="true">🏘️</div>
                         <div class="quartier-name">${escapeHtml(quartier)}</div>
-                        <div class="quartier-count">${count} pharmacies</div>
+                        <div class="quartier-count">${count} pharmacies en garde</div>
                     </div>
                 `;
             }).join('');
@@ -1116,6 +1145,7 @@
         async function init() {
             const success = await loadAllData();
             if (success) {
+                await loadGardeCounts();
                 await loadDateInfo();
                 await displayQuartiers();
             } else {
